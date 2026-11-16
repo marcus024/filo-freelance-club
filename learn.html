@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning Hub · Free freelancing and VA guides · The Filo Freelance Club</title>
+  <meta name="description" content="Free guides for Filipino freelancers and Virtual Assistants: getting started, choosing a service, portfolios, clients, interviews, taxes and getting paid, plus VA career paths.">
+  <meta name="theme-color" content="#1437a2">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="learn">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="draft-bar">Draft for review · content and links are placeholders until approved</div>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow">Learning Hub</span>
+        <h1>Free guides for every step of your freelance journey</h1>
+        <p class="lead">Start with the basics, then explore the career path that fits you.</p>
+        <form class="search" role="search" onsubmit="return false">
+          <label class="sr-only" for="q">Search guides and career paths</label>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Search: portfolio, Upwork, bookkeeping, taxes…" autocomplete="off">
+        </form>
+        <p class="sr-only" id="result-count" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 16px">
+      <div class="wrap">
+        <div class="hub-group">
+          <div class="head">
+            <div>
+              <span class="eyebrow">General learning</span>
+              <h2>Freelancing and VA basics</h2>
+            </div>
+          </div>
+          <ol class="path" aria-label="Recommended order">
+            <li>Start</li><li>Service</li><li>Portfolio</li><li>Clients</li><li>Interview</li><li>Money</li><li>Online presence</li><li>Getting paid</li>
+          </ol>
+          <div class="cards" id="guide-list"></div>
+          <p class="empty" id="guide-empty" hidden>No guides match that search yet.</p>
+        </div>
+
+        <div class="hub-group" id="niches">
+          <div class="head">
+            <div>
+              <span class="eyebrow">Niche and career hubs</span>
+              <h2>VA career paths</h2>
+              <p class="lead">What the work looks like, the skills and tools you need, sample services, portfolio ideas and where clients are found.</p>
+            </div>
+          </div>
+          <div class="niches" id="niche-list"></div>
+          <p class="empty" id="niche-empty" hidden>No career paths match that search yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section on-blue cta">
+      <div class="wrap">
+        <h2>Not sure which path is yours?</h2>
+        <p class="lead">Take the free self-assessment and Miggy will help you choose.</p>
+        <a class="btn btn-primary" href="assessment.html">Find my starting point →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      const F = window.FILO, UI = window.FILO_UI;
+      const gList = document.getElementById('guide-list'), nList = document.getElementById('niche-list');
+      const gEmpty = document.getElementById('guide-empty'), nEmpty = document.getElementById('niche-empty');
+      const count = document.getElementById('result-count');
+      const text = (o) => JSON.stringify(o).toLowerCase();
+
+      function render(q) {
+        q = q.trim().toLowerCase();
+        const g = F.guides.filter((x) => !q || text(x).includes(q));
+        const n = F.niches.filter((x) => !q || text(x).includes(q));
+        gList.innerHTML = g.map(UI.guideCard).join('');
+        nList.innerHTML = n.map(UI.nicheCard).join('');
+        gEmpty.hidden = g.length > 0;
+        nEmpty.hidden = n.length > 0;
+        count.textContent = q ? `${g.length} guides and ${n.length} career paths match "${q}".` : '';
+      }
+
+      const input = document.getElementById('q');
+      const initial = new URLSearchParams(location.search).get('q') || '';
+      input.value = initial;
+      input.addEventListener('input', () => render(input.value));
+      render(initial);
+    })();
+  </script>
+</body>
+</html>

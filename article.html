@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guide · The Filo Freelance Club</title>
+  <meta name="description" content="Free freelancing and VA guide from The Filo Freelance Club.">
+  <meta name="theme-color" content="#1437a2">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="learn">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="draft-bar">Draft for review · content and links are placeholders until approved</div>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <article class="section" style="padding-top: clamp(36px, 6vw, 72px)">
+      <div class="wrap" id="article"></div>
+    </article>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      const F = window.FILO, UI = window.FILO_UI, esc = UI.esc;
+      const params = new URLSearchParams(location.search);
+      const root = document.getElementById('article');
+      const guide = F.guides.find((g) => g.id === params.get('guide'));
+      const niche = F.niches.find((n) => n.id === params.get('niche'));
+      const setMeta = (title, desc) => {
+        document.title = `${title} · The Filo Freelance Club`;
+        document.querySelector('meta[name="description"]').setAttribute('content', desc);
+      };
+      const nextBox = `
+        <div class="next-box on-blue">
+          <h2>Find out which path fits you</h2>
+          <a class="btn btn-primary" href="assessment.html">Take the self-assessment →</a>
+        </div>`;
+
+      if (guide) {
+        setMeta(guide.title, guide.summary);
+        const i = F.guides.indexOf(guide), next = F.guides[i + 1];
+        root.innerHTML = `
+          <div class="article">
+            <p class="crumbs"><a href="learn.html">Learning Hub</a> / ${esc(guide.step)}</p>
+            <span class="tag">Step ${i + 1} of ${F.guides.length} · ${guide.minutes} min read</span>
+            <h1 style="margin-top:16px">${esc(guide.title)}</h1>
+            <p class="lead">${esc(guide.summary)}</p>
+            ${guide.sections.map((s) => `
+              <h2>${esc(s.h)}</h2>
+              ${s.p ? `<p>${esc(s.p)}</p>` : ''}
+              ${s.list ? `<ul>${s.list.map((li) => `<li>${esc(li)}</li>`).join('')}</ul>` : ''}`).join('')}
+            ${next ? `<p style="margin-top:32px"><a href="article.html?guide=${next.id}"><b>Next: ${esc(next.title)} →</b></a></p>` : ''}
+            ${nextBox}
+          </div>`;
+      } else if (niche) {
+        setMeta(niche.name, `${niche.line} Skills, tools, sample services, portfolio ideas and where to find clients.`);
+        const list = (a) => `<ul>${a.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`;
+        root.innerHTML = `
+          <div class="article">
+            <p class="crumbs"><a href="learn.html#niches">Career paths</a> / ${esc(niche.name)}</p>
+            <span class="tag">Career path</span>
+            <h1 style="margin-top:16px">${esc(niche.name)}</h1>
+            <p class="lead">${esc(niche.line)}</p>
+            <h2>What the work looks like</h2>
+            <p>${esc(niche.work)}</p>
+            <div class="facts">
+              <section class="fact"><h2>Skills</h2>${list(niche.skills)}</section>
+              <section class="fact"><h2>Tools</h2>${list(niche.tools)}</section>
+              <section class="fact"><h2>Sample services</h2>${list(niche.services)}</section>
+              <section class="fact"><h2>Portfolio ideas</h2>${list(niche.portfolio)}</section>
+            </div>
+            <h2>Where clients may be found</h2>
+            ${list(niche.clients)}
+            ${nextBox}
+          </div>`;
+      } else {
+        root.innerHTML = `
+          <div class="article">
+            <h1>Guide not found</h1>
+            <p class="lead">This guide may have moved.</p>
+            <a class="btn btn-ghost" href="learn.html">Go to the Learning Hub</a>
+          </div>`;
+      }
+    })();
+  </script>
+</body>
+</html>

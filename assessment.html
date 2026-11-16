@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Self-Assessment · Find your starting point · The Filo Freelance Club</title>
+  <meta name="description" content="A free 7-minute self-assessment for aspiring Filipino freelancers and Virtual Assistants. Get your best-fit VA paths and a personal follow-up from Miggy.">
+  <meta name="theme-color" content="#1437a2">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="assessment">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="draft-bar">Draft for review · answers stay in your browser and are not sent anywhere yet</div>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <section class="page-hero" style="padding-bottom: 20px">
+      <div class="wrap">
+        <span class="eyebrow">Self-assessment</span>
+        <h1>Find your freelance starting point</h1>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 12px">
+      <div class="wrap assess">
+        <ol class="progress" id="progress" aria-label="Assessment steps"></ol>
+
+        <div>
+          <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+          <form class="form-card" id="assessment" novalidate>
+
+            <!-- 1. Friendly intro -->
+            <div class="step-panel" data-step="Welcome">
+              <h2 tabindex="-1">Hi! Let's find where you should start</h2>
+              <p class="lead">This short assessment helps us understand where you are today, so the advice you get actually fits you.</p>
+              <ul class="intro-points">
+                <li>Takes about 7 minutes. No right or wrong answers.</li>
+                <li>You get an instant result with your best-fit VA paths.</li>
+                <li>Miggy reviews it personally and emails you your next steps.</li>
+              </ul>
+              <div class="privacy"><span aria-hidden="true">🔒</span><p style="margin:0"><b>Your privacy:</b> your answers and files are only used to review your assessment and reply to you. We never sell or share them.</p></div>
+            </div>
+
+            <!-- 2. Background -->
+            <div class="step-panel" data-step="About you" hidden>
+              <h2 tabindex="-1">About you</h2>
+              <div class="row">
+                <div class="field">
+                  <label for="name">Full name</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required>
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-hint">
+                  <p class="hint" id="email-hint">Miggy will send your follow-up here.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="field">
+                  <label for="location">Where are you based?</label>
+                  <input id="location" name="location" type="text" autocomplete="address-level2" placeholder="e.g. Quezon City">
+                </div>
+                <div class="field">
+                  <label for="hours">Hours you can freelance each week</label>
+                  <select id="hours" name="hours">
+                    <option value="">Choose one</option>
+                    <option>Less than 10 hours</option>
+                    <option>10 to 20 hours</option>
+                    <option>20 to 40 hours</option>
+                    <option>Full-time (40+)</option>
+                  </select>
+                </div>
+              </div>
+              <fieldset>
+                <legend>Which best describes you right now?</legend>
+                <div class="choices" data-group="situation" data-type="radio"></div>
+              </fieldset>
+            </div>
+
+            <!-- 3. Skills -->
+            <div class="step-panel" data-step="Skills" hidden>
+              <h2 tabindex="-1">What are you good at?</h2>
+              <fieldset aria-describedby="skills-hint skills-error">
+                <legend>Choose all that apply</legend>
+                <p class="hint" id="skills-hint" style="margin:-4px 0 12px">Think about work, school, side hustles and things friends ask you to help with.</p>
+                <div class="choices" data-group="skills" data-type="checkbox"></div>
+                <p class="error" id="skills-error" hidden style="margin-top:10px">Choose at least one skill.</p>
+              </fieldset>
+              <div class="field">
+                <label for="tools">Tools you already use <span style="font-weight:600;color:var(--muted)">(optional)</span></label>
+                <input id="tools" name="tools" type="text" placeholder="e.g. Canva, Excel, Google Docs, Shopify">
+              </div>
+            </div>
+
+            <!-- 4. Experience -->
+            <div class="step-panel" data-step="Experience" hidden>
+              <h2 tabindex="-1">Your experience</h2>
+              <fieldset>
+                <legend>Have you worked in any of these?</legend>
+                <div class="choices" data-group="industries" data-type="checkbox"></div>
+              </fieldset>
+              <fieldset>
+                <legend>Freelancing experience so far</legend>
+                <div class="choices" data-group="freelance" data-type="radio"></div>
+              </fieldset>
+            </div>
+
+            <!-- 5. Hobbies + goals -->
+            <div class="step-panel" data-step="Hobbies and goals" hidden>
+              <h2 tabindex="-1">Hobbies and goals</h2>
+              <fieldset>
+                <legend>What do you enjoy doing in your free time?</legend>
+                <div class="choices" data-group="hobbies" data-type="checkbox"></div>
+              </fieldset>
+              <fieldset>
+                <legend>What is your main goal?</legend>
+                <div class="choices" data-group="goals" data-type="radio"></div>
+              </fieldset>
+              <fieldset>
+                <legend>What is holding you back?</legend>
+                <div class="choices" data-group="barriers" data-type="checkbox"></div>
+              </fieldset>
+            </div>
+
+            <!-- 6. Professional assets -->
+            <div class="step-panel" data-step="Your profile" hidden>
+              <h2 tabindex="-1">Your professional profile</h2>
+              <p class="lead" style="font-size:17px">All optional. Share what you have so Miggy can give more specific advice.</p>
+              <div class="field">
+                <label for="cv">CV or resume</label>
+                <div class="file-drop">
+                  <input id="cv" name="cv" type="file" accept=".pdf,.doc,.docx" aria-describedby="cv-hint">
+                  <p class="hint" id="cv-hint">PDF or Word, up to 5 MB.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="field">
+                  <label for="portfolio">Portfolio link</label>
+                  <input id="portfolio" name="portfolio" type="url" placeholder="https://">
+                </div>
+                <div class="field">
+                  <label for="linkedin">LinkedIn</label>
+                  <input id="linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/">
+                </div>
+              </div>
+              <div class="field">
+                <label for="profiles">OnlineJobs.ph, Upwork or personal website</label>
+                <input id="profiles" name="profiles" type="url" placeholder="https://">
+              </div>
+            </div>
+
+            <!-- 7. Result -->
+            <div class="step-panel" data-step="Your result" hidden>
+              <div id="result" tabindex="-1"></div>
+            </div>
+
+            <div class="step-actions" id="actions">
+              <button type="button" class="btn btn-ghost" id="back" hidden>← Back</button>
+              <button type="submit" class="btn btn-primary" id="next">Let's start →</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/assessment.js"></script>
+</body>
+</html>
