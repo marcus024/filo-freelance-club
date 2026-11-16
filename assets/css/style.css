@@ -95,7 +95,7 @@ p { margin: 0 0 1em; }
 .hero-note { font-size: 15px; color: var(--muted); margin: 0; }
 .hero-art { position: relative; aspect-ratio: 1; max-width: 420px; justify-self: center; width: 100%; }
 .hero-art .sun { position: absolute; inset: 6%; border-radius: 50%; background: var(--yellow); }
-.hero-art .mark { position: absolute; inset: 22%; width: 56%; height: 56%; object-fit: contain; mix-blend-mode: multiply; }
+.hero-art .mark { position: absolute; inset: 22%; width: 56%; height: 56%; object-fit: contain; }
 .hero-art .chip {
   position: absolute; background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 14px;
   padding: 10px 14px; font: 700 14px/1.2 var(--body); color: var(--blue);
